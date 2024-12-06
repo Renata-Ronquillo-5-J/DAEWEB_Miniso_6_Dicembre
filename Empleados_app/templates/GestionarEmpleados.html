@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!--columna izquierda-->
+        <h1> Empleados </h1>
+        <div class="card"> <!--Targeta-->
+            <div class="card-body">
+                <form action="/RegistrarEmpleados/" method="POST"> {% csrf_token %}<!--formulario-->
+                    <div class="form-group">
+                        <input type="text" id="numEmpleados" name="numEmpleados" class="form-control"
+                        placeholder="Id Empleado" minLenght="10" maxLenght="10" reqired>
+                    </div>
+                    
+                    <div class="form-group py-3">
+                        <input type="text" id="txtNombre" name="txtNombre" class="form-control"
+                        placeholder="Nombre Empleado"  maxLenght="100" reqired>
+                    </div>
+
+                    <div class="form-group ">
+                        <input type="text" id="numTelefono" name="numTelefono" class="form-control"
+                        placeholder="No. De Telefono" min="1" max="20" reqired>
+                    </div>
+
+                    <div class="form-group py-3">
+                        <input type="text" id="txtCorreo" name="txtCorreo" class="form-control"
+                        placeholder="Correo"  maxLenght="100" reqired>
+                    </div>
+
+                    <div class="form-group py-3">
+                        <input type="Date" id="DateFecha" name="DateFecha" class="form-control"
+                        placeholder="Fecha de nacimiento"  maxLenght="100" reqired>
+                    </div>
+
+                    <div class="form-group py-3">
+                        <input type="text" id="numSalario" name="numSalario" class="form-control"
+                        placeholder="Salario de Empleado"  maxLenght="100" reqired>
+                    </div>
+
+                    <div class="form-group py-3">
+                        <input type="text" id="txtDireccion" name="txtDireccion" class="form-control"
+                        placeholder="Direccion"  maxLenght="100" reqired>
+                    </div>
+
+                    <div class="form-group py-3">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> <!--Targeta-->
+    <div class="col-md-8">
+        <h1> Lista de Empleados </h1>
+        <img class="w-50" src="{% static  'img/Empleados.jpeg' %}" alt="Foto miniso" width="400" height="auto">
+        <div class="table-responsive"> <!--tabla responsive-->
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Id de Empleados</th>
+                <th scope="col">Nombre del empleado</th>
+                <th scope="col">No.Telefono</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Fecha de Nacimiento</th>
+                <th scope="col">Salario</th>
+                <th scope="col">Dirección</th>
+
+                
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for m in MisEmpleados  %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{m.Id_Empleados}}</td>
+                    <td>{{m.Nombre}}</td>
+                    <td>{{m.No_Telefono}}</td>
+                    <td>{{m.Correo}}</td>
+                    <td>{{m.Fecha_Nacimiento}}</td>
+                    <td>{{m.Salario}}</td>
+                    <td>{{m.Direccion}}</td>
+                    <td> <a href="SeleccionarEmpleados/{{m.Id_Empleados}}" class="btn btn-info">Editar</a> </td> 
+                    <td> <a href="BorrarEmpleados/{{m.Id_Empleados}}" class="btn btn-danger">Borrar</a> </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
