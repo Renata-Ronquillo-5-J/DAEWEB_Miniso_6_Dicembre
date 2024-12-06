@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+<divclass="row"> 
+<div class="col-md-4 offset-md-4">
+    <div class="card"> <!--Targeta-->
+        <div class="card-body">
+            <form action="/EditarProveedores/" method="POST"> {% csrf_token %}<!--formulario-->
+                <div class="form-group">
+                    <input type="text" id="numProveedor" name="numProveedor" class="form-control"
+                    value="{{MisProveedores.Id_Proveedor}}" minLenght="6" maxLenght="6" readonly reqired>
+                </div>
+                
+                <div class="form-group py-3">
+                    <input type="text" id="numTelefono" name="numTelefono" class="form-control"
+                    value="{{MisProveedores.Telefono}}" maxLenght="100" reqired>
+                </div>
+
+                <div class="form-group py-3">
+                    <input type="text" id="txtCorreo" name="txtCorreo" class="form-control"
+                    value="{{MisProveedores.Correo}}"  min="1" max="20" reqired>
+                </div>
+                
+                <div class="form-group py-3">
+                    <input type="text" id="txtCiudad" name="txtCiudad" class="form-control"
+                    value="{{MisProveedores.Ciudad}}"  min="1" max="20" reqired>
+                </div>
+
+                <div class="form-group py-3">
+                    <input type="text" id="numIdPro" name="numIdPro" class="form-control"
+                    value="{{MisProveedores.Id_ProductoV}}"  min="1" max="20" reqired>
+                </div>
+
+                <div class="form-group py-3">
+                    <input type="text" id="numPrecioPro" name="numPrecioPro" class="form-control"
+                    value="{{MisProveedores.PrecioProducto}}"  min="1" max="20" reqired>
+                </div>
+
+                <div class="form-group py-3">
+                    <input type="text" id="txtNombrePro" name="txtNombrePro" class="form-control"
+                    value="{{MisProveedores.NombreProducto}}"  min="1" max="20" reqired>
+                </div>
+
+
+                <div class="form-group py-3">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</div> <!--columna-->
+</div> <!--fila-->
+
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!--columna izquierda-->
+        <h1> Proveedores </h1>
+        <div class="card"> <!--Targeta-->
+            <div class="card-body">
+                <form action="/RegistrarProveedores/" method="POST"> {% csrf_token %}<!--formulario-->
+                    <div class="form-group">
+                        <input type="text" id="numProveedor" name="numProveedor" class="form-control"
+                        placeholder="Id del Proveedor" minLenght="10" maxLenght="10" reqired>
+                    </div>
+                    
+                    <div class="form-group py-3">
+                        <input type="text" id="numTelefono" name="numTelefono" class="form-control"
+                        placeholder="Numero de telefono"  maxLenght="100" reqired>
+                    </div>
+
+                    <div class="form-group ">
+                        <input type="text" id="txtCorreo" name="txtCorreo" class="form-control"
+                        placeholder="Correo" min="1" max="20" reqired>
+                    </div>
+
+                    <div class="form-group py-3">
+                        <input type="text" id="txtCiudad" name="txtCiudad" class="form-control"
+                        placeholder="Ciudad"  maxLenght="100" reqired>
+                    </div>
+
+                    <div class="form-group py-3">
+                        <input type="text" id="numIdPro" name="numIdPro" class="form-control"
+                        placeholder="Id del Producto"  maxLenght="100" reqired>
+                    </div>
+
+                    <div class="form-group py-3">
+                        <input type="text" id="numPrecioPro" name="numPrecioPro" class="form-control"
+                        placeholder="Precio Producto"  maxLenght="100" reqired>
+                    </div>
+
+                    <div class="form-group py-3">
+                        <input type="text" id="txtNombrePro" name="txtNombrePro" class="form-control"
+                        placeholder="Nombre del producto"  maxLenght="100" reqired>
+                    </div>
+
+                    <div class="form-group py-3">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> <!--Targeta-->
+    <div class="col-md-8">
+        <h1> Lista de Proveedores </h1>
+        <img class="w-50" src="{% static  'img/Proveedores.jpeg' %}" alt="Foto miniso" width="400" height="auto">
+        <div class="table-responsive"> <!--tabla responsive-->
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Id de Proveedor</th>
+                <th scope="col">Telefono del Proveedor</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Ciudad del proveedor</th>
+                <th scope="col"> Id del producto</th>
+                <th scope="col">Precio del producto</th>
+                <th scope="col">Nombre del producto</th>
+
+
+                
+                </tr>
+            </thead>
+            <tbody>
+                {% for m in MisProveedores  %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{m.Id_Proveedor}}</td>
+                    <td>{{m.Telefono}}</td>
+                    <td>{{m.Correo}}</td>
+                    <td>{{m.Ciudad}}</td>
+                    <td>{{m.Id_ProductoV}}</td>
+                    <td>{{m.PrecioProducto}}</td>
+                    <td>{{m.NombreProducto}}</td>
+                    <td> <a href="SeleccionarProveedores/{{m.Id_Proveedor}}" class="btn btn-info">Editar</a> </td> 
+                    <td> <a href="BorrarProveedores/{{m.Id_Proveedor}}" class="btn btn-danger">Borrar</a> </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

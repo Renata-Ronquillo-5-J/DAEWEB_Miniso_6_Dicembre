@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!--columna izquierda-->
+        <h1> Sucursales </h1>
+        <div class="card"> <!--Targeta-->
+            <div class="card-body">
+                <form action="/RegistrarSucursales/" method="POST"> {% csrf_token %}<!--formulario-->
+                    <div class="form-group">
+                        <input type="text" id="numSucursal" name="numSucursal" class="form-control"
+                        placeholder="Id de Sucursal" minLenght="10" maxLenght="10" reqired>
+                    </div>
+                    
+                    <div class="form-group py-3">
+                        <input type="text" id="txtDireccion" name="txtDireccion" class="form-control"
+                        placeholder="Direccion"  maxLenght="100" reqired>
+                    </div>
+
+                    <div class="form-group ">
+                        <input type="text" id="txtCorreo" name="txtCorreo" class="form-control"
+                        placeholder="Correo Sucursal" min="1" max="20" reqired>
+                    </div>
+
+                    <div class="form-group py-3">
+                        <input type="text" id="numTelefono" name="numTelefono" class="form-control"
+                        placeholder="No. Telefono"  maxLenght="100" reqired>
+                    </div>
+
+                    <div class="form-group py-3">
+                        <input type="text" id="txtCiudad" name="txtCiudad" class="form-control"
+                        placeholder="Ciudad"  maxLenght="100" reqired>
+                    </div>
+
+                    <div class="form-group py-3">
+                        <input type="text" id="txtEstado" name="txtEstado" class="form-control"
+                        placeholder="Estado"  maxLenght="100" reqired>
+                    </div>
+
+                    <div class="form-group py-3">
+                        <input type="text" id="txtHorario" name="txtHorario" class="form-control"
+                        placeholder="Horario"  maxLenght="100" reqired>
+                    </div>
+
+                    <div class="form-group py-3">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> <!--Targeta-->
+    <div class="col-md-8">
+        <h1> Lista de Sucursales </h1>
+        <img class="w-50" src="{% static  'img/Sucursales.jpeg' %}" alt="Foto miniso" width="400" height="auto">
+        <div class="table-responsive"> <!--tabla responsive-->
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Id de Sucursal</th>
+                <th scope="col">Ubicacion Sucursal</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Ciudad</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Horario</th>
+
+
+                
+                </tr>
+            </thead>
+            <tbody>
+                {% for m in MisSucursales  %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{m.Id_Sucursal}}</td>
+                    <td>{{m.Ubicacion }}</td>
+                    <td>{{m.Correo}}</td>
+                    <td>{{m.Telefono}}</td>
+                    <td>{{m.Ciudad}}</td>
+                    <td>{{m.Estado}}</td>
+                    <td>{{m.Horario}}</td>
+                    <td> <a href="SeleccionarSucursales/{{m.Id_Sucursal}}" class="btn btn-info">Editar</a> </td> 
+                    <td> <a href="BorrarSucursales/{{m.Id_Sucursal}}" class="btn btn-danger">Borrar</a> </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

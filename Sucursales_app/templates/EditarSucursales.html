@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+<divclass="row"> 
+<div class="col-md-4 offset-md-4">
+    <div class="card"> <!--Targeta-->
+        <div class="card-body">
+            <form action="/EditarSucursales/" method="POST"> {% csrf_token %}<!--formulario-->
+                <div class="form-group">
+                    <input type="text" id="numSucursal" name="numSucursal" class="form-control"
+                    value="{{MisSucursales.Id_Sucursal}}" minLenght="6" maxLenght="6" readonly reqired>
+                </div>
+                
+                <div class="form-group py-3">
+                    <input type="text" id="txtDireccion" name="txtDireccion" class="form-control"
+                    value="{{MisSucursales.Ubicacion}}" maxLenght="100" reqired>
+                </div>
+
+                <div class="form-group py-3">
+                    <input type="text" id="txtCorreo" name="txtCorreo" class="form-control"
+                    value="{{MisSucursales.Correo}}"  min="1" max="20" reqired>
+                </div>
+                
+                <div class="form-group py-3">
+                    <input type="text" id="numTelefono" name="numTelefono" class="form-control"
+                    value="{{MisSucursales.Telefono}}"  min="1" max="20" reqired>
+                </div>
+
+                <div class="form-group py-3">
+                    <input type="text" id="txtCiudad" name="txtCiudad" class="form-control"
+                    value="{{MisSucursales.Ciudad}}"  min="1" max="20" reqired>
+                </div>
+
+                <div class="form-group py-3">
+                    <input type="text" id="txtEstado" name="txtEstado" class="form-control"
+                    value="{{MisSucursales.Estado}}"  min="1" max="20" reqired>
+                </div>
+
+                <div class="form-group py-3">
+                    <input type="text" id="txtHorario" name="txtHorario" class="form-control"
+                    value="{{MisSucursales.Horario}}"  min="1" max="20" reqired>
+                </div>
+
+
+                <div class="form-group py-3">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</div> <!--columna-->
+</div> <!--fila-->
+
+{% endblock %}
